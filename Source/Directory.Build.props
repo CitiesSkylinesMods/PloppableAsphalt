@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <!-- Path to managed game dlls: -->
+    <ManagedDllPath>C:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\</ManagedDllPath>
+    <!-- Path where mod dll(s) will be published: -->
+    <PublishDllPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\255710\881291183\</PublishDllPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <PackageReference>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <Reference>
+      <Private>False</Private>
+    </Reference>
+  </ItemDefinitionGroup>
+
+</Project>

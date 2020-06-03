@@ -1,29 +1,49 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project details -->
   <PropertyGroup>
-    <ProjectGuid>{90CE3B31-5783-47A4-BFC1-624D02FDF2A0}</ProjectGuid>
-    <TargetFramework>net35</TargetFramework>
-    <AssemblyTitle>PloppableAsphalt</AssemblyTitle>
-    <Product>PloppableAsphalt</Product>
-    <Copyright>Copyright ©  2020</Copyright>
+    <AssemblyTitle>AdditiveShader</AssemblyTitle>
+    <Product>AdditiveShader</Product>
+    <Description>Allows time-of-day dependent use of additive shader on props and buildings.</Description>
+    <Copyright>Copyright © 2017-2020, Ronyx69, Simon Ryr, and contributors</Copyright>
   </PropertyGroup>
+
+  <!-- Build settings -->
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblySearchPaths>
+      $(ManagedDllPath);
+      $(AssemblySearchPaths)
+    </AssemblySearchPaths>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+
+  <!-- Code analysers -->
   <ItemGroup>
-    <Reference Include="ICities">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\ICities.dll</HintPath>
-    </Reference>
-    <Reference Include="ColossalManaged">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\ColossalManaged.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0-beta" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" />
+    <PackageReference Include="CSharpGuidelinesAnalyzer" Version="3.5.0" />
+    <PackageReference Include="Unofficial.Microsoft.Unity.Analyzers" Version="1.0.0" />
   </ItemGroup>
+
+  <!-- Managed dll references -->
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Assembly-CSharp" />
+    <Reference Include="ColossalManaged" />
+    <Reference Include="ICities" />
+    <Reference Include="UnityEngine" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+
+  <!-- Build target -->
+  <Target Name="DeployToModsDirectory" AfterTargets="Build" DependsOnTargets="Build">
+    <ItemGroup>
+      <TargetBinaries Include="$(OutputPath)*.dll" />
+    </ItemGroup>
+    <Message Text="Publishing to: $(PublishDllPath)" Importance="high" />
+    <Copy SourceFiles="@(TargetBinaries)" DestinationFolder="$(PublishDllPath)" SkipUnchangedFiles="true" />
+  </Target>
+
 </Project>

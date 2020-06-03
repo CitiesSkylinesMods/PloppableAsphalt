@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PloppableAsphalt", "PloppableAsphalt\PloppableAsphalt.csproj", "{90CE3B31-5783-47A4-BFC1-624D02FDF2A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PloppableAsphalt", "PloppableAsphalt\PloppableAsphalt.csproj", "{90CE3B31-5783-47A4-BFC1-624D02FDF2A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{44150B8E-54B0-4A3B-9C52-44919F2AA22F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
