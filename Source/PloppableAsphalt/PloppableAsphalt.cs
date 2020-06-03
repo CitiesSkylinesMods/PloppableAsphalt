@@ -14,18 +14,15 @@ namespace PloppableAsphalt
 
 		internal static void SetRenderProperties(PropInfo prefab)
 		{
-			prefab.m_lodRenderDistance = ((prefab.m_mesh.name == "ploppableasphalt-prop") ? 200 : 18000);
-			prefab.m_maxRenderDistance = ((prefab.m_mesh.name == "ploppableasphalt-decal") ? prefab.m_maxRenderDistance : 18000f);
-			prefab.m_lodRenderDistance = ((prefab.m_mesh.name == "ploppablecliffgrass") ? 200 : 18000);
-			prefab.m_lodRenderDistance = ((prefab.m_mesh.name == "ploppablegravel") ? 200 : 18000);
+			prefab.m_lodRenderDistance = (prefab.m_mesh.name == "ploppableasphalt-prop") ? 200 : 18000;
+			prefab.m_maxRenderDistance = (prefab.m_mesh.name == "ploppableasphalt-decal") ? prefab.m_maxRenderDistance : 18000f;
+			prefab.m_lodRenderDistance = (prefab.m_mesh.name == "ploppablecliffgrass") ? 200 : 18000;
+			prefab.m_lodRenderDistance = (prefab.m_mesh.name == "ploppablegravel") ? 200 : 18000;
 		}
 
-		internal static void SetRenderProperties(BuildingInfo prefab)
-		{
-			prefab.m_maxPropDistance = 18000f;
-		}
+        internal static void SetRenderProperties(BuildingInfo prefab) => prefab.m_maxPropDistance = 18000f;
 
-		internal static void SetRenderPropertiesAll()
+        internal static void SetRenderPropertiesAll()
 		{
 			for (uint num = 0u; num < PrefabCollection<PropInfo>.LoadedCount(); num++)
 			{
@@ -68,8 +65,8 @@ namespace PloppableAsphalt
 				{
 					Texture texture = new Texture2D(1, 1);
 					Texture texture2 = new Texture2D(1, 1);
-					texture = (loaded.m_material.GetTexture("_ACIMap") as Texture2D);
-					texture2 = (loaded.m_lodMaterial.GetTexture("_ACIMap") as Texture2D);
+					texture = loaded.m_material.GetTexture("_ACIMap") as Texture2D;
+					texture2 = loaded.m_lodMaterial.GetTexture("_ACIMap") as Texture2D;
 					if (loaded.m_mesh.name == "ploppableasphalt-prop")
 					{
 						if (loaded.m_material != null)
@@ -107,13 +104,13 @@ namespace PloppableAsphalt
 					loaded.m_lodMaterial.SetTexture("_APRMap", texture2);
 					SetRenderProperties(loaded);
 					loaded.m_lodMaterialCombined = null;
-					loaded.m_generatedInfo.m_size.z = loaded.m_generatedInfo.m_size.z * 2.174f;
+					loaded.m_generatedInfo.m_size.z *= 2.174f;
 					if (loaded.m_generatedInfo.m_size.y < 16f)
 					{
 						loaded.m_generatedInfo.m_size.y = 16f;
 					}
-					loaded.m_generatedInfo.m_size.x = loaded.m_generatedInfo.m_size.x * 0.4f;
-					loaded.m_generatedInfo.m_size.z = loaded.m_generatedInfo.m_size.z * 0.4f;
+					loaded.m_generatedInfo.m_size.x *= 0.4f;
+					loaded.m_generatedInfo.m_size.z *= 0.4f;
 				}
 				else if (loaded.m_mesh.name == "ploppableasphalt-decal")
 				{
