@@ -1,15 +1,15 @@
-using System.Reflection;
-
 namespace PloppableAsphalt
 {
-	public static class Util
+    using System.Reflection;
+
+    public static class Util
 	{
 		public static Q ReadPrivate<T, Q>(T o, string fieldName)
 		{
-			FieldInfo[] fields = typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+			var fields = typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 			FieldInfo fieldInfo = null;
-			FieldInfo[] array = fields;
-			foreach (FieldInfo fieldInfo2 in array)
+			var array = fields;
+			foreach (var fieldInfo2 in array)
 			{
 				if (fieldInfo2.Name == fieldName)
 				{
@@ -22,10 +22,10 @@ namespace PloppableAsphalt
 
 		public static void WritePrivate<T, Q>(T o, string fieldName, object value)
 		{
-			FieldInfo[] fields = typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+			var fields = typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 			FieldInfo fieldInfo = null;
-			FieldInfo[] array = fields;
-			foreach (FieldInfo fieldInfo2 in array)
+			var array = fields;
+			foreach (var fieldInfo2 in array)
 			{
 				if (fieldInfo2.Name == fieldName)
 				{

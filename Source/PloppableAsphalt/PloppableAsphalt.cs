@@ -1,8 +1,8 @@
-using UnityEngine;
-
 namespace PloppableAsphalt
 {
-	public class PloppableAsphalt
+    using UnityEngine;
+
+    public class PloppableAsphalt
 	{
 		public static bool Loaded;
 
@@ -29,7 +29,7 @@ namespace PloppableAsphalt
 		{
 			for (uint num = 0u; num < PrefabCollection<PropInfo>.LoadedCount(); num++)
 			{
-				PropInfo loaded = PrefabCollection<PropInfo>.GetLoaded(num);
+				var loaded = PrefabCollection<PropInfo>.GetLoaded(num);
 				if (!(loaded == null) && (loaded.m_mesh.name == "ploppableasphalt-prop" || loaded.m_mesh.name == "ploppableasphalt-decal" || loaded.m_mesh.name == "ploppablecliffgrass" || loaded.m_mesh.name == "ploppablegravel"))
 				{
 					SetRenderProperties(loaded);
@@ -37,7 +37,7 @@ namespace PloppableAsphalt
 			}
 			for (uint num2 = 0u; num2 < PrefabCollection<BuildingInfo>.LoadedCount(); num2++)
 			{
-				BuildingInfo loaded2 = PrefabCollection<BuildingInfo>.GetLoaded(num2);
+				var loaded2 = PrefabCollection<BuildingInfo>.GetLoaded(num2);
 				if (loaded2 == null || loaded2.m_props == null || loaded2.m_props.Length == 0)
 				{
 					continue;
@@ -59,7 +59,7 @@ namespace PloppableAsphalt
 			shader3 = Shader.Find("Custom/Net/TrainBridge");
 			for (uint num = 0u; num < PrefabCollection<PropInfo>.LoadedCount(); num++)
 			{
-				PropInfo loaded = PrefabCollection<PropInfo>.GetLoaded(num);
+				var loaded = PrefabCollection<PropInfo>.GetLoaded(num);
 				if (loaded == null)
 				{
 					continue;
@@ -129,9 +129,9 @@ namespace PloppableAsphalt
 		{
 			for (uint num = 0u; num < PrefabCollection<PropInfo>.LoadedCount(); num++)
 			{
-				Color asphaltColor = PloppableAsphaltMod.Settings.AsphaltColor;
-				PropInfo loaded = PrefabCollection<PropInfo>.GetLoaded(num);
-				Color color = new Color(asphaltColor.r / 255f, asphaltColor.g / 255f, asphaltColor.b / 255f);
+				var asphaltColor = PloppableAsphaltMod.Settings.AsphaltColor;
+				var loaded = PrefabCollection<PropInfo>.GetLoaded(num);
+				var color = new Color(asphaltColor.r / 255f, asphaltColor.g / 255f, asphaltColor.b / 255f);
 				if (!(loaded == null) && (loaded.m_mesh.name == "ploppableasphalt-prop" || loaded.m_mesh.name == "ploppableasphalt-decal" || loaded.m_mesh.name == "ploppablegravel" || loaded.m_mesh.name == "ploppablecliffgrass"))
 				{
 					loaded.m_color0 = color;

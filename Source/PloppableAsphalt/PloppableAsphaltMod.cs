@@ -1,10 +1,10 @@
-using ColossalFramework.UI;
-using ICities;
-using UnityEngine;
-
 namespace PloppableAsphalt
 {
-	public class PloppableAsphaltMod : IUserMod
+    using ColossalFramework.UI;
+    using ICities;
+    using UnityEngine;
+
+    public class PloppableAsphaltMod : IUserMod
 	{
 		private static Configuration settings;
 
@@ -61,7 +61,7 @@ namespace PloppableAsphalt
 
 		public void OnSettingsUI(UIHelperBase helper)
 		{
-			UIHelperBase uIHelperBase = helper.AddGroup("\t\t\t\t\t\t     RGB Values");
+			var uIHelperBase = helper.AddGroup("\t\t\t\t\t\t     RGB Values");
 			uIHelperBase.AddSpace(40);
 			redLabel = (UITextField)uIHelperBase.AddTextfield(" ", Settings.AsphaltColor.r.ToString(), delegate
 			{

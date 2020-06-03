@@ -1,12 +1,12 @@
-using ColossalFramework.IO;
-using System;
-using System.IO;
-using System.Xml.Serialization;
-using UnityEngine;
-
 namespace PloppableAsphalt
 {
-	public class Configuration
+    using ColossalFramework.IO;
+    using System;
+    using System.IO;
+    using System.Xml.Serialization;
+    using UnityEngine;
+
+    public class Configuration
 	{
 		[XmlIgnore]
 		private static readonly string configurationPath = Path.Combine(DataLocation.localApplicationData, "PloppableAsphalt.xml");
@@ -26,29 +26,25 @@ namespace PloppableAsphalt
 		public static void SaveConfiguration()
 		{
 			string path = configurationPath;
-			Configuration settings = PloppableAsphaltMod.Settings;
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Configuration));
-			using (StreamWriter textWriter = new StreamWriter(path))
-			{
-				settings.OnPreSerialize();
-				xmlSerializer.Serialize(textWriter, settings);
-			}
-		}
+			var settings = PloppableAsphaltMod.Settings;
+			var xmlSerializer = new XmlSerializer(typeof(Configuration));
+            using var textWriter = new StreamWriter(path);
+            settings.OnPreSerialize();
+            xmlSerializer.Serialize(textWriter, settings);
+        }
 
 		public static Configuration LoadConfiguration()
 		{
 			string text = configurationPath;
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Configuration));
+			var xmlSerializer = new XmlSerializer(typeof(Configuration));
 			try
 			{
-				using (StreamReader textReader = new StreamReader(text))
-				{
-					return xmlSerializer.Deserialize(textReader) as Configuration;
-				}
-			}
+                using var textReader = new StreamReader(text);
+                return xmlSerializer.Deserialize(textReader) as Configuration;
+            }
 			catch (Exception ex)
 			{
-				Debug.Log($"[Ploppable Asphalt]: Error Parsing {text}: {ex.Message.ToString()}");
+				Debug.Log($"[Ploppable Asphalt]: Error Parsing {text}: {ex.Message}");
 				return null;
 			}
 		}

@@ -1,9 +1,9 @@
-using ColossalFramework.UI;
-using ICities;
-
 namespace PloppableAsphalt
 {
-	public class PloppableAsphaltLoading : LoadingExtensionBase
+    using ColossalFramework.UI;
+    using ICities;
+
+    public class PloppableAsphaltLoading : LoadingExtensionBase
 	{
 		public override void OnLevelLoaded(LoadMode mode)
 		{
