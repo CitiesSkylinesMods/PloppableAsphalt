@@ -15,6 +15,8 @@ namespace PloppableAsphalt.Manager
     {
         private static UITextureSprite desaturationTarget;
 
+        private static float cacheDesaturationOpacity;
+
         private static PloppableAsphaltManager instance;
 
         private static Color currentColor = Color.magenta;
@@ -69,22 +71,10 @@ namespace PloppableAsphalt.Manager
             HookEvents(true);
             SetAsphaltColor(currentColor);
 
-            enabled = ObtainDesaturationTarget();
+            CacheDesaturationControlOpacity();
+            enabled = false; // no update loop required
 
             Debug.Log($"[PloppableAsphalt] Start() time: {startTimer.ElapsedMilliseconds}ms");
-        }
-
-        /// <summary>
-        /// Keep opacity of <see cref="desaturationTarget"/> locked at
-        /// <c>0f</c> to prevent blurring of ploppale props.
-        /// </summary>
-        /// <remarks>PERFORMANCE CRITICAL.</remarks>
-        [UsedImplicitly]
-        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Unity API.")]
-        protected void LateUpdate()
-        {
-            if (desaturationTarget.opacity != 0f)
-                desaturationTarget.opacity = 0f;
         }
 
         /// <summary>
@@ -94,7 +84,6 @@ namespace PloppableAsphalt.Manager
         protected void OnDestroy()
         {
             HookEvents(false);
-            enabled = false;
             instance = null;
             CancelInvoke();
             desaturationTarget = null;
@@ -106,38 +95,51 @@ namespace PloppableAsphalt.Manager
         /// Obtain the <see cref="desaturationTarget"/> for the
         /// <see cref="LateUpdate()"/> loop.
         /// </summary>
-        /// <returns>Returns <c>true</c> if successful, otherwise <c>false</c>.</returns>
-        private static bool ObtainDesaturationTarget()
+        private static void CacheDesaturationControlOpacity()
         {
             var desaturationControl = FindObjectOfType<DesaturationControl>();
 
             if (desaturationControl is null)
-            {
-                Debug.Log("[PloppableAsphalt] Failed to obtain desaturationControl; ploppables may look blurred.");
-                return false;
-            }
+                return;
 
             desaturationTarget = desaturationControl.GetComponent<UITextureSprite>();
 
             if (desaturationTarget is null)
-            {
-                Debug.Log("[PloppableAsphalt] Failed to obtain desaturationTarget; ploppables may look blurred.");
-                return false;
-            }
+                return;
 
-            return true;
+            cacheDesaturationOpacity = desaturationTarget.opacity;
         }
 
         /// <summary>
-        /// Refresh ploppable assets when game options panel closes.
+        /// <para>Refresh ploppable assets when game options panel closes.</para>
+        /// <para>
+        /// Also hides the background 'blur' effect so map is clearly
+        /// visible while options screen displayed.
+        /// </para>
         /// </summary>
         /// <param name="component">Ignored.</param>
         /// <param name="visible">The visibility of the options panel.</param>
         private static void OnOptionsVisibilityChanged(UIComponent component, bool visible)
         {
+            ToggleDesaturationTargetOpacity(visible);
+
             if (!visible)
                 foreach (var asset in instance.assets)
                     asset.Refresh();
+        }
+
+        /// <summary>
+        /// Toggles opacity of the 'blur' effect that appears while
+        /// the options screen is visible, allowing user to see the
+        /// map clearly while options screen open.
+        /// </summary>
+        /// <param name="optionsVisible">If <c>true</c>, blur effect will be hidden.</param>
+        private static void ToggleDesaturationTargetOpacity(bool optionsVisible)
+        {
+            if (desaturationTarget is null)
+                return;
+
+            desaturationTarget.opacity = optionsVisible ? 0f : cacheDesaturationOpacity;
         }
 
         /// <summary>
