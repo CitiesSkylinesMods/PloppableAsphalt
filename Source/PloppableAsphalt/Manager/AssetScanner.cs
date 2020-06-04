@@ -7,7 +7,7 @@ namespace PloppableAsphalt.Manager
     /// <summary>
     /// Collates list of assets associated with PloppableAsphalt mod.
     /// </summary>
-    public class AssetScanner
+    public static class AssetScanner
     {
         /// <summary>
         /// Use to quickly determine if a prop is a ploppable.
