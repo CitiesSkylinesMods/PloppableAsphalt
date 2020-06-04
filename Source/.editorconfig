@@ -340,7 +340,7 @@ dotnet_naming_rule.parameters_rule.style                = camel_case_style
 dotnet_naming_rule.parameters_rule.severity             = warning
 
 # AV1008: Avoid static classes
-dotnet_diagnostic.AV1008.severity = suggestion
+dotnet_diagnostic.AV1008.severity = none
 
 # AV1210: Do not catch general exception types
 dotnet_diagnostic.AV1210.severity = none
@@ -411,6 +411,9 @@ dotnet_diagnostic.RCS1123.severity = none
 # SA0001: XML comment analysis is disabled due to project configuration
 dotnet_diagnostic.SA0001.severity = none
 
+# SA1001: Commas should be spaced correctly
+dotnet_diagnostic.SA1001.severity = none
+
 # SA1025: Code should not contain multiple whitespace in a row
 dotnet_diagnostic.SA1025.severity = none
 
@@ -425,6 +428,9 @@ dotnet_diagnostic.SA1407.severity = none
 
 # SA1503: Braces should not be omitted
 dotnet_diagnostic.SA1503.severity = none
+
+# SA1519: Braces should not be omitted from multi-line child statement
+dotnet_diagnostic.SA1519.severity = none
 
 # SA1601: Partial elements should be documented
 dotnet_diagnostic.SA1601.severity = none
