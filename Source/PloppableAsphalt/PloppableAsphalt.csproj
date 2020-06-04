@@ -2,10 +2,10 @@
 
   <!-- Project details -->
   <PropertyGroup>
-    <AssemblyTitle>AdditiveShader</AssemblyTitle>
-    <Product>AdditiveShader</Product>
-    <Description>Allows time-of-day dependent use of additive shader on props and buildings.</Description>
-    <Copyright>Copyright © 2017-2020, Ronyx69, Simon Ryr, and contributors</Copyright>
+    <AssemblyTitle>PloppableAsphalt</AssemblyTitle>
+    <Product>PloppableAsphalt</Product>
+    <Description>Allows using road shaders on props for ploppable asphalt, pavement, cliff, grass, gravel surfaces.</Description>
+    <Copyright>Copyright © 2017-2020, Ronyx69, TPB, and contributors</Copyright>
   </PropertyGroup>
 
   <!-- Build settings -->
@@ -21,7 +21,7 @@
 
   <!-- Code analysers -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" />
     <PackageReference Include="Roslynator.Analyzers" Version="2.3.0" />
     <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0-beta" />
     <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" />
