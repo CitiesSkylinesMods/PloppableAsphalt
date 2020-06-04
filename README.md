@@ -8,6 +8,8 @@ See also:
 * [CSL Modding guide](https://cslmodding.info/mod/ploppable-asphalt/)
 * [Scripts](https://gist.github.com/ronyx69/2f4b08a45f3a14c585597c848a594150) for [Mod Tools](https://steamcommunity.com/sharedfiles/filedetails/?id=450877484) console (`F7`)
 
+> # :warning: SETTINGS ARE NOT CURRENTLY SAVED/LOADED
+
 ## Contributing
 
 Code improvements always welcome!
