@@ -71,7 +71,7 @@ namespace PloppableAsphalt.Manager
             HookEvents(true);
             SetAsphaltColor(currentColor);
 
-            CacheDesaturationControlOpacity();
+            CacheDesaturationControl();
             enabled = false; // no update loop required
 
             Debug.Log($"[PloppableAsphalt] Start() time: {startTimer.ElapsedMilliseconds}ms");
@@ -95,7 +95,7 @@ namespace PloppableAsphalt.Manager
         /// Obtain the <see cref="desaturationTarget"/> for the
         /// <see cref="LateUpdate()"/> loop.
         /// </summary>
-        private static void CacheDesaturationControlOpacity()
+        private static void CacheDesaturationControl()
         {
             var desaturationControl = FindObjectOfType<DesaturationControl>();
 
