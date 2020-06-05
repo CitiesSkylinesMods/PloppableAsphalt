@@ -72,20 +72,6 @@ namespace PloppableAsphalt.Manager
             lodTexture  = IsDecal ? upwardDiffuse : prop.m_lodMaterial.GetTexture("_ACIMap");
 
             Refresh();
-
-            // LEGACY SEQUENCE
-            // Decal:
-            // - set texture to upwardDiffuse
-            // x- set render distances
-            // Props:
-            // x- get texture
-            // - replace shader
-            // x- set texture (why? same texture)
-            // x- set render distances, logMaterialCombined = null
-            // - change generated info size (should be based on theme?)
-            // All:
-            // - apply color (why all? why not just asphalt props?)
-            // - set render distances (why?!!)
         }
 
         /// <summary>
