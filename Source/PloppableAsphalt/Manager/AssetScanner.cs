@@ -10,9 +10,14 @@ namespace PloppableAsphalt.Manager
     public static class AssetScanner
     {
         /// <summary>
-        /// Use to quickly determine if a prop is a ploppable.
+        /// If a mesh name contains this token, it's _probably_ a Ploppable Asphalt asset.
         /// </summary>
-        public static readonly HashSet<string> ValidMeshNames = new HashSet<string>
+        private const string TOKEN = "ploppable";
+
+        /// <summary>
+        /// Use to quickly confirm if a prop is a Ploppable Asphalt asset.
+        /// </summary>
+        private static readonly HashSet<string> ValidMeshNames = new HashSet<string>
         {
             "ploppableasphalt-prop",
             "ploppableasphalt-decal",
@@ -126,7 +131,7 @@ namespace PloppableAsphalt.Manager
         /// <returns>Returns <c>true</c> if it's ploppable, otherwise <c>false</c>.</returns>
         private static bool IsPloppable(Mesh mesh) =>
             !string.IsNullOrEmpty(mesh.name) &&
-            mesh.name[0] == 'p' &&
+            mesh.name.StartsWith(TOKEN) &&
             ValidMeshNames.Contains(mesh.name);
     }
 }
